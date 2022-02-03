@@ -6,7 +6,9 @@ class Calculator{
         this.clear();
     }
     clear(){
-
+        this.currentOperand = '';
+        this.previousOperand = '';
+        this.operation = undefined;
     }
     delete(){
 
@@ -35,3 +37,4 @@ const currentOperandTxt = document.querySelector('[data-current-operand]');
 const previousOperandTxt = document.querySelector('[data-previous-operand]');
 
 // Instantiate the Calculator
+const calculator = new Calculator(currentOperandTxt, previousOperandTxt);
