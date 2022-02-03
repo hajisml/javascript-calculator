@@ -16,14 +16,17 @@ class Calculator{
     calculate(){
 
     }
-    inputNumber(){
-
+    inputNumber(number){
+        this.currentOperand = this.currentOperand.toString() + number.toString();
     }
     inputOperation(){
 
     }
     calculate(){
 
+    }
+    updateDisplay(){
+        this.currentOperandTxt.innerHTML = this.currentOperand;
     }
 }
 
@@ -38,3 +41,11 @@ const previousOperandTxt = document.querySelector('[data-previous-operand]');
 
 // Instantiate the Calculator
 const calculator = new Calculator(currentOperandTxt, previousOperandTxt);
+
+// input numbers and update display
+numberBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        calculator.inputNumber(btn.innerHTML);
+        calculator.updateDisplay();
+    })
+});
