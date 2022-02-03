@@ -20,14 +20,27 @@ class Calculator{
         if (number === '.' && this.currentOperand.includes('.')) return
         this.currentOperand = this.currentOperand.toString() + number.toString();
     }
-    inputOperation(){
-
+    inputOperation(operation){
+        if ((this.currentOperand === '') && (this.previousOperand === '')) return;
+        if ((this.currentOperand === '') && (this.previousOperand !== '')){
+            this.operation = operation;
+            return;
+        }
+        if (this.previousOperand !== ''){
+            this.calculate();
+        }
+        this.operation = operation;
+        this.previousOperand = this.currentOperand;
+        this.currentOperand = '';
     }
     calculate(){
 
     }
     updateDisplay(){
         this.currentOperandTxt.innerHTML = this.currentOperand;
+        if (this.operation != null){
+            this.previousOperandTxt.innerHTML = `${this.previousOperand} ${this.operation}`;
+        }
     }
 }
 
@@ -56,3 +69,11 @@ allClearBtn.addEventListener('click', () => {
     calculator.clear();
     calculator.updateDisplay();
 })
+
+// operations
+operationBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        calculator.inputOperation(btn.innerHTML);
+        calculator.updateDisplay();
+    })
+});
