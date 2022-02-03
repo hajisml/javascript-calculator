@@ -50,3 +50,9 @@ numberBtns.forEach(btn => {
         calculator.updateDisplay();
     })
 });
+
+// clear the display
+allClearBtn.addEventListener('click', () => {
+    calculator.clear();
+    calculator.updateDisplay();
+})
