@@ -11,7 +11,7 @@ class Calculator{
         this.operation = undefined;
     }
     delete(){
-
+        this.currentOperand = this.currentOperand.slice(0, -1);
     }
     calculate(){
         let result;
@@ -103,5 +103,12 @@ operationBtns.forEach(btn => {
 // equals
 equalsBtn.addEventListener('click', () => {
     calculator.calculate();
+    calculator.updateDisplay();
+});
+
+// delete
+
+deleteBtn.addEventListener('click', () => {
+    calculator.delete();
     calculator.updateDisplay();
 });
