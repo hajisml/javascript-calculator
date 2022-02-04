@@ -14,7 +14,30 @@ class Calculator{
 
     }
     calculate(){
+        let result;
+        const currentNum = parseFloat(this.currentOperand);
+        const prevNum = parseFloat(this.previousOperand);
+        if (isNaN(currentNum) || isNaN(prevNum)) return;
 
+        switch (this.operation){
+            case '÷':
+                result = prevNum / currentNum;
+                break;
+            case '*':
+                result = prevNum * currentNum;
+                break;
+            case '+':
+                result = prevNum + currentNum;
+                break;
+            case '-':
+                result = prevNum - currentNum;
+                break;
+            default:
+                return;
+        }
+        this.currentOperand = result;
+        this.operation = undefined;
+        this.previousOperand = '';
     }
     inputNumber(number){
         if (number === '.' && this.currentOperand.includes('.')) return
@@ -33,13 +56,12 @@ class Calculator{
         this.previousOperand = this.currentOperand;
         this.currentOperand = '';
     }
-    calculate(){
-
-    }
     updateDisplay(){
         this.currentOperandTxt.innerHTML = this.currentOperand;
         if (this.operation != null){
             this.previousOperandTxt.innerHTML = `${this.previousOperand} ${this.operation}`;
+        }else{
+            this.previousOperandTxt.innerHTML = '';
         }
     }
 }
@@ -76,4 +98,10 @@ operationBtns.forEach(btn => {
         calculator.inputOperation(btn.innerHTML);
         calculator.updateDisplay();
     })
+});
+
+// equals
+equalsBtn.addEventListener('click', () => {
+    calculator.calculate();
+    calculator.updateDisplay();
 });
