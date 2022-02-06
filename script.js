@@ -56,10 +56,24 @@ class Calculator{
         this.previousOperand = this.currentOperand;
         this.currentOperand = '';
     }
+    convertDisplay(operand){
+        const operandString = operand.toString();
+        let operandInt = parseFloat(operandString.split('.')[0]);
+        let operandDeci = operandString.split('.')[1];
+        let operandDisplay;
+
+        if (isNaN(operandInt)){
+            operandDisplay = '';
+        }else{
+            operandDisplay = operandInt.toLocaleString('en', {maximumFractionDigits: 0})
+        }
+        
+        return operandDeci != null ? `${operandDisplay}.${operandDeci}` : operandDisplay;
+    }
     updateDisplay(){
-        this.currentOperandTxt.innerHTML = this.currentOperand;
+        this.currentOperandTxt.innerHTML = this.convertDisplay(this.currentOperand);
         if (this.operation != null){
-            this.previousOperandTxt.innerHTML = `${this.previousOperand} ${this.operation}`;
+            this.previousOperandTxt.innerHTML = `${this.convertDisplay(this.previousOperand)} ${this.operation}`;
         }else{
             this.previousOperandTxt.innerHTML = '';
         }
