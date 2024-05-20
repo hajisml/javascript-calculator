@@ -31,9 +31,8 @@ Enjoy!
 Project is: _complete_
 
 ## Inspiration
-My first javascript project courtesy of 'Web Dev Simplified' on YouTube.
-It has some minor bug fixes and subtle new features ;-).
+My first javascript project.
 
 ## Contact
-Created by [@halim_ke](https://twitter.com/halim_ke) - on Twitter.
+Created by [@hajisml](https://twitter.com/hajisml) - on Twitter.
 
